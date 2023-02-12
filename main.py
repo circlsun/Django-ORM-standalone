@@ -15,8 +15,10 @@ if __name__ == '__main__':
 
     for visit in active_visits:
         print('Зашёл в хранилище, время по Москве:', localtime(visit.entered_at))  # noqa: E501
-        print('Текущее время:', localtime())
-        print('Находится в хранилище:', localtime() - localtime(visit.entered_at))  # noqa: E501
+        delta = localtime() - localtime(visit.entered_at)
+        visit_time = str(timedelta(seconds=delta.seconds))
+        print('Находится в хранилище:', visit_time)  # noqa: E501
+
     print()
     print('Количество пропусков:', Passcard.objects.count())  # noqa: T001
     print('Активных пропусков:', len(active_passcards))
